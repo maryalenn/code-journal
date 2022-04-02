@@ -37,3 +37,4 @@ function saveEntry(event) {
   // console.log(data);
   $entryForm.reset();
 }
+/// /FINAL STEP BEFORE SUBMIT - TEST IN PRIVATE BROWSER AND MAKE SURE NO ERRORS
