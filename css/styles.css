@@ -18,15 +18,55 @@ h6 {
   font-family: "Proza Libre", sans-serif;
 }
 
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
 header h1 {
   font-size: 20px;
   font-weight: normal;
+  display: inline;
+}
+
+header h2 {
+  font-size: 16px;
+  font-weight: normal;
+  display: inline;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }
 
 img.placeholder,
 img.entry-image {
   width: 100%;
   border-radius: 4px;
+}
+
+.entries img {
+  width: 340px;
+  max-width: 98%;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.entries h2 {
+  margin: 0;
+}
+
+.entries.row {
+  margin-bottom: 25px;
 }
 
 .entry-form {
@@ -72,9 +112,20 @@ button {
   border: none;
   padding: 0.5rem;
   width: 72px;
+  height: 40px;
   margin-top: 15px;
 }
 
 .row.button {
   justify-content: flex-end;
+}
+
+button.new-button {
+  width: 60px;
+  height: 40px;
+}
+
+.section-top {
+  display: flex;
+  justify-content: space-between;
 }

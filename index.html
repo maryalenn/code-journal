@@ -20,11 +20,12 @@
 <body>
   <header>
     <h1 class="container">Code Journal</h1>
+    <h2>Entries</h2>
   </header>
   <main class="container">
-    <div data-view="entry-form" class="entry-form">
+    <div data-view="entry-form" class="entry-form hidden">
       <form id="entry-form" action="">
-        <legend><h2>New Entry</h2></legend>
+        <legend><h1>New Entry</h1></legend>
         <div class="row">
           <div class="column-half">
             <img src="images/placeholder-image-square.jpg" alt="placeholder" class="placeholder">
@@ -52,6 +53,47 @@
           </div>
         </div>
       </form>
+    </div>
+    <div data-view="entries" class="container">
+      <section class="section-top">
+        <h1 class="column-half">Entries</h1>
+        <button class="new-button column-half">New</button>
+      </section>
+      <ul>
+        <li><!-- // PROTOTYPE -->
+          <div class="entries row">
+            <div class="column-half">
+              <img src="images/placeholder-image-square.jpg" alt=""></div>
+            <div class="column-half">
+              <h2>Title</h2>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut fugiat autem enim adipisci quibusdam nobis facere minima, odio consequuntur veritatis.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, sapiente? A eos porro illum minus ipsum quaerat accusantium dolore animi laudantium possimus delectus necessitatibus, voluptas nulla, accusamus dolores ducimus placeat!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus nobis illum voluptate, cupiditate, error quasi iste esse voluptatem aut inventore, molestiae nisi voluptatum repudiandae assumenda neque impedit reprehenderit eos enim!
+              </p>
+            </div>
+          </div>
+        </li><!-- // END PROTOTYPE -->
+        <li>
+          <!-- // PROTOTYPE -->
+          <div class="entries row">
+            <div class="column-half">
+              <img src="images/placeholder-image-square.jpg" alt="">
+            </div>
+            <div class="column-half">
+              <h2>Title</h2>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut fugiat autem enim adipisci quibusdam nobis facere
+                    minima, odio consequuntur veritatis.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, sapiente? A eos porro illum minus ipsum quaerat
+                    accusantium dolore animi laudantium possimus delectus necessitatibus, voluptas nulla, accusamus dolores ducimus
+                    placeat!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus nobis illum voluptate, cupiditate, error quasi
+                    iste esse voluptatem aut inventore, molestiae nisi voluptatum repudiandae assumenda neque impedit reprehenderit
+                    eos enim!
+              </p>
+            </div>
+          </div>
+        </li><!-- // END PROTOTYPE -->
+      </ul>
     </div>
   </main>
   <script src="js/data.js"></script>
