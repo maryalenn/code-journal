@@ -34,6 +34,63 @@ function saveEntry(event) {
   });
   data.nextEntryId++;
   $entryImage.src = 'images/placeholder-image-square.jpg';
-  // console.log(data);
   $entryForm.reset();
 }
+
+// function to build out the basic node structure for the entries
+
+// <li>
+// <div class="entries row">
+//    <div class="column-half">
+//      <img src="$entryImage.src" alt=""></div>
+//    <div class="column-half">
+//      <h2>$$inputTitle</h2>
+//     <p>$$inputNotes</p>
+//    </div>
+//  </div>
+// </li> */
+
+// Define the parent element
+var $entriesList = document.getElementsByClassName('entries-list');
+// Create the first child element and append it to parent element
+var $listItem = document.createElement('li');
+$entriesList[0].appendChild($listItem);
+
+// Define the rendering function
+function renderEntries(entries) {
+
+  // Create inner div with row class attribute and append it to the parent li element
+  var $entryRow = document.createElement('div');
+  $entryRow.setAttribute('class', 'entries row');
+  $listItem.appendChild($entryRow);
+
+  // Create inner div with $columnHalf class attribute and append it to the parent div.row element
+  var $columnHalf = document.createElement('div');
+  $columnHalf.setAttribute('class', 'column-half');
+  $entryRow.appendChild($columnHalf);
+
+  // Create the content elements that will hold the entry data (image, title, & text)
+  var $entryImg = document.createElement('img');
+  $entryImg.setAttribute('src', entries.photoURL);
+  $columnHalf.appendChild($entryImg);
+
+  var $entryTitle = document.createElement('h2');
+  $columnHalf.appendChild($entryTitle);
+  $entryTitle.innerHTML = entries.title;
+
+  var $entryNotes = document.createElement('p');
+  $columnHalf.appendChild($entryNotes);
+  $entryNotes.innerHTML = entries.notes;
+
+  return $listItem;
+}
+
+for (var i = 0; i < data.entries.length; i++) {
+  // eslint-disable-next-line no-unused-vars
+  var $entry = renderEntries(data.entries[i]);
+  // eslint-disable-next-line no-unused-expressions
+  $entriesList.appendChild;
+}
+
+// Entries link in navigation bar - on click, hide the entry form.
+// New button on click hide the entries list
