@@ -26,16 +26,27 @@ h2 {
   font-size: 24px;
 }
 
+a {
+  text-decoration: none;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
 header h1 {
   font-size: 20px;
   font-weight: normal;
   display: inline;
 }
 
-header h2 {
+header h2,
+header h2 > a {
   font-size: 16px;
   font-weight: normal;
   display: inline;
+  color: white;
 }
 
 ul,
@@ -49,13 +60,12 @@ li {
 }
 
 img.placeholder,
-img.entry-image {
-  width: 100%;
-  border-radius: 4px;
-}
-
+img.entry-image,
 .entries img {
   width: 340px;
+  height: 340px;
+  object-fit: cover;
+  object-position: 50% 50%;
   max-width: 98%;
   border-radius: 4px;
   margin-bottom: 15px;
@@ -104,7 +114,8 @@ input:focus-visible {
   outline: none;
 }
 
-button {
+button,
+a.button {
   background-color: #562b81;
   color: white;
   text-transform: uppercase;
@@ -114,6 +125,7 @@ button {
   width: 72px;
   height: 40px;
   margin-top: 15px;
+  text-align: center;
 }
 
 .row.button {
@@ -128,4 +140,8 @@ button.new-button {
 .section-top {
   display: flex;
   justify-content: space-between;
+}
+
+.no-entries {
+  text-align: center;
 }
