@@ -35,6 +35,12 @@ button {
   cursor: pointer;
 }
 
+i {
+  color: #562b81;
+  float: right;
+  cursor: pointer;
+}
+
 header h1 {
   font-size: 20px;
   font-weight: normal;

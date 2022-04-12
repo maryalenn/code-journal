@@ -41,7 +41,7 @@ function renderEntries(entries) {
   //    <div class="column-half">
   //      <img src="$entryImage.src" alt=""></div>
   //    <div class="column-half">
-  //      <h2>$$inputTitle</h2>
+  //      <h2>$inputTitle <i class="fa-solid fa-pen"></i></h2>
   //     <p>$$inputNotes</p>
   //    </div>
   //  </div>
@@ -51,6 +51,7 @@ function renderEntries(entries) {
   var $listItem = document.createElement('li');
   var $entryRow = document.createElement('div');
   $entryRow.setAttribute('class', 'entries row');
+  $listItem.setAttribute('data-entry-id', entries.entryId);
   $listItem.appendChild($entryRow);
 
   // Create inner div with $columnHalf class attribute and append it to the parent div.row element
@@ -62,7 +63,6 @@ function renderEntries(entries) {
   var $entryImg = document.createElement('img');
   $entryImg.setAttribute('src', entries.photoURL);
   $columnHalfLeft.appendChild($entryImg);
-
   var $columnHalfRight = document.createElement('div');
   $columnHalfRight.setAttribute('class', 'column-half');
   $entryRow.appendChild($columnHalfRight);
@@ -71,10 +71,19 @@ function renderEntries(entries) {
   $columnHalfRight.appendChild($entryTitle);
   $entryTitle.innerHTML = entries.title;
 
+  var $editIcon = document.createElement('i');
+  $entryTitle.appendChild($editIcon);
+  $editIcon.setAttribute('class', 'fas fa-pen');
+  $editIcon.setAttribute('data-entry-id', entries.entryId);
+
   var $entryNotes = document.createElement('p');
   $columnHalfRight.appendChild($entryNotes);
   $entryNotes.innerHTML = entries.notes;
   return $listItem;
+}
+// To remove the "no entries" message if there are entries stored
+if (data.entries.length > 0) {
+  $noEntries.remove();
 }
 
 for (var i = 0; i < data.entries.length; i++) {
@@ -96,6 +105,18 @@ function navLink(event) {
   $entryFormContainer.classList.add('hidden');
 }
 
+function editEntry(event) {
+
+  var target = event.target;
+  if (target === document.querySelector('i')) {
+    $entryFormContainer.classList.remove('hidden');
+    $dataViewEntries.classList.add('hidden');
+    var editEntryId = target.getAttribute('data-entry-id');
+    data.editing = editEntryId;
+  }
+}
+$dataViewEntries.addEventListener('click', editEntry);
+
 function saveEntry(event) {
   event.preventDefault();
   $inputNotes = $entryForm.elements.notes.value;
@@ -103,7 +124,8 @@ function saveEntry(event) {
   data.entries.unshift({
     title: $inputTitle,
     photoURL: $inputImageURL,
-    notes: $inputNotes
+    notes: $inputNotes,
+    entryId: data.nextEntryId
   });
   data.nextEntryId++;
   $entryImage.src = 'images/placeholder-image-square.jpg';
