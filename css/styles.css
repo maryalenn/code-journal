@@ -37,8 +37,12 @@ button {
 
 i {
   color: #562b81;
-  float: right;
   cursor: pointer;
+}
+
+i.edit-entry {
+  float: right;
+  margin-left: 20px;
 }
 
 header h1 {

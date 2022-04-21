@@ -13,6 +13,7 @@ var $inputNotes = document.querySelector('#notes');
 var $entriesNavLink = document.querySelector('.nav');
 var $newButton = document.querySelector('.new-button');
 var $dataViewEntries = document.querySelector("div[data-view='entries']");
+
 var $noEntries = document.querySelector('.no-entries');
 
 // Event listener to update img src with input values
@@ -73,7 +74,7 @@ function renderEntries(entries) {
 
   var $editIcon = document.createElement('i');
   $entryTitle.appendChild($editIcon);
-  $editIcon.setAttribute('class', 'fas fa-pen');
+  $editIcon.setAttribute('class', 'fas fa-pen edit-entry');
   $editIcon.setAttribute('data-entry-id', entries.entryId);
 
   var $entryNotes = document.createElement('p');
@@ -103,18 +104,49 @@ $entriesNavLink.addEventListener('click', navLink);
 function navLink(event) {
   $dataViewEntries.classList.remove('hidden');
   $entryFormContainer.classList.add('hidden');
+  $entryForm.reset();
 }
 
+// function editEntry(event) {
+//   var target = event.target;
+//   // event.stopPropogation();
+//   if (target.getAttribute('class', 'edit-entry')) {
+//     $entryFormContainer.classList.remove('hidden');
+//     $dataViewEntries.classList.add('hidden');
+//     var editEntryId = target.getAttribute('data-entry-id');
+//     data.editing = editEntryId;
+//     for (var i = 0; i < data.entries.length; i++) {
+//       if (data.editing == data.entries[i].entryId) {
+//         $inputTitle.setAttribute('value', data.entries[i].title);
+//         $inputImageURL.setAttribute('value', data.entries[i].photoURL);
+//         $inputNotes.innerHTML = data.entries[i].notes;
+//         $entryImage.src = data.entries[i].photoURL;
+//       }
+//     }
+//   }
+// }
 function editEntry(event) {
-
-  var target = event.target;
-  if (target === document.querySelector('i')) {
+  // console.log(event.target);
+  // console.log(event.target.tagName);
+  if (event.target.tagName === 'I') {
+    // Bring the form back to view
     $entryFormContainer.classList.remove('hidden');
     $dataViewEntries.classList.add('hidden');
-    var editEntryId = target.getAttribute('data-entry-id');
+    // Identify the entry ID that is being edited
+    var editEntryId = Number(event.target.getAttribute('data-entry-id'));
     data.editing = editEntryId;
+    // Loop to match the object
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing === data.entries[i].entryId) {
+        $inputTitle.setAttribute('value', data.entries[i].title);
+        $inputImageURL.setAttribute('value', data.entries[i].photoURL);
+        $inputNotes.innerHTML = data.entries[i].notes;
+        $entryImage.src = data.entries[i].photoURL;
+      }
+    }
   }
 }
+
 $dataViewEntries.addEventListener('click', editEntry);
 
 function saveEntry(event) {
@@ -128,12 +160,13 @@ function saveEntry(event) {
     entryId: data.nextEntryId
   });
   data.nextEntryId++;
-  $entryImage.src = 'images/placeholder-image-square.jpg';
   $entryForm.reset();
+  $entryImage.src = 'images/placeholder-image-square.jpg';
   $entryFormContainer.classList.add('hidden');
   $dataViewEntries.classList.remove('hidden');
   var newEntry = renderEntries(data.entries[0]);
   $entriesList[0].prepend(newEntry);
+
   // To remove the initial "no entries" message div
   $noEntries.remove();
 }
